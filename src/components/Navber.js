@@ -22,7 +22,7 @@ const Navber = () => {
           
           <span className="cart-counter relative"></span>
             <BsCart />
-          <span className="cart-icon absolute top-3 right-7 text-rose-500 bg-yellow-300 h-5 w-5 text-center rounded-full text-sm font-bold">13</span>
+          <span className="cart-icon absolute z-[1] top-3 right-7 text-rose-500 bg-yellow-300 h-5 w-5 text-center rounded-full text-sm font-bold">13</span>
         </Link>
       </div>
     </nav>
