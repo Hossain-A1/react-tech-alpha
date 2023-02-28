@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom"; 
+import { Routes, Route } from "react-router-dom";
 import Navber from "./components/Navber";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -9,8 +9,10 @@ import Cart from "./pages/Cart";
 const App = () => {
   return (
     <>
-      <div className="app min-h-screen bg-gray-50 text-gray-600 
-      ">
+      <div
+        className="app min-h-screen bg-gray-50/100 text-gray-600 
+      "
+      >
         <Navber />
         <Routes>
           <Route path="/" element={<Home />} />
