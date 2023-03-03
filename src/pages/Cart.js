@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-const productsData = [
+const data = [
   {
     id: 1,
-    title: 'LG 65" Smart TV',
+    title: "LG 65 Smart TV",
     description:
       "A smart TV is a digital television that is, essentially, an Internet-connected.",
     price: 5449,
@@ -59,7 +59,7 @@ const Cart = () => {
           <div className="col-total text-right">Total</div>
         </div>
         <div className="products flex flex-col gap-5 py-1">
-          {productsData.map((product) => (
+          {data.map((product) => (
             <div className="product grid grid-cols-5 gap-10 border py-1">
               <div className="porduct-l flex items-center col-span-2 gap-5">
                 <img
@@ -132,7 +132,9 @@ const Cart = () => {
           <button className="checkOut uppercase text-rose-600 bg-yellow-500 py-2 px-6 rounded w-full text-center hover:bg-yellow-700 duration-300 hover:text-gray-50 font-medium">
             checkOut
           </button>
-          <button className="continue text-rose-700 uppercase text-sm font-medium">continue shipping</button>
+          <button className="continue text-rose-700 uppercase text-sm font-medium">
+            continue shipping
+          </button>
         </div>
       </div>
     </div>

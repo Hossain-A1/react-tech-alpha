@@ -1,33 +1,37 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
 import axios from "axios";
 
-const initalState = {
-    items: [],
-    status: null
+const initialState = {
+  items: [],
+  status: null,
 };
 
 export const productsFetching = createAsyncThunk(
   "products/productsFetching",
   async () => {
-    const res = await axios.get("https://jsonplaceholder.typicode.com/users");
+    const res = await axios.get(
+      "https://mocki.io/v1/a731e6e1-5b40-40d8-bfd8-50833c2fad37"
+    );
     return res.data;
   }
 );
 
 export const productsSlice = createSlice({
   name: "products",
-  initalState:initalState,
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(productsFetching.pending, (state, action) => {
-      state.status = "loading ";
+      state.status = "Loading...";
     });
+
     builder.addCase(productsFetching.fulfilled, (state, action) => {
-      (state.status = "no issue"), (state.items = action.payload);
+      state.status = "";
+      state.items = action.payload;
     });
+
     builder.addCase(productsFetching.rejected, (state, action) => {
-      state.status = "rejected";
+      state.status = "Something went wrong!";
     });
   },
 });
