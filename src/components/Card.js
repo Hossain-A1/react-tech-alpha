@@ -1,9 +1,13 @@
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addToCart } from "../feature/products/CartSlice";
 
 const Card = ({ product }) => {
 
   const navigate = useNavigate()
-  const addToCartHandaler = (id)=>{
+  const dispatch =   useDispatch();
+  const addToCartHandaler = (product)=>{
+     dispatch(addToCart(product))
     navigate('/cart')
   }
   return (
@@ -28,7 +32,7 @@ const Card = ({ product }) => {
             </span>
            {product.price}
           </span>
-          <button onClick={()=> addToCartHandaler(product.id)} className="text-rose-900 bg-yellow-500 uppercase font-medium py-2 px-4 text-center rounded-md text-sm w-[65%] hover:bg-rose-500 hover:text-gray-900 duration-300">
+          <button onClick={()=> addToCartHandaler(product)} className="text-rose-900 bg-yellow-500 uppercase font-medium py-2 px-4 text-center rounded-md text-sm w-[65%] hover:bg-rose-500 hover:text-gray-900 duration-300">
             Add to cart
           </button>
         </div>
