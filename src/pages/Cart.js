@@ -1,11 +1,12 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart, clearCart, decreaseCart, removeFromCart } from "../feature/products/CartSlice";
+import { addToCart, clearCart, decreaseCart, getSubTotal, removeFromCart } from "../feature/products/CartSlice";
 
 
 
 const Cart = () => {
-  const {cartItems: data} =  useSelector(state => state.cart);
+  const {cartItems: data, cartTotalAmount: subTotal} =  useSelector(state => state.cart);
   const dispatch = useDispatch()
 
   const handleRemove = (product) =>{
@@ -19,10 +20,14 @@ const Cart = () => {
     dispatch(addToCart(product))
   }
 
+  useEffect(()=>{
+    dispatch(getSubTotal())
+  },[data, dispatch])
+
   return (
     <div className="cart-section container mx-auto py-5">
       <h2 className="section-title uppercase text-xl font-bold mb-10 text-center">
-       {data.length > 0? " your cart is here" : "Cart is empty"}
+       {data.length > 0? ` you've added ${data.length}  product${data.length > 1 ? "s" : ''}` : "Cart is empty"}
       </h2>
       {data.length === 0 && <Link to='/products' className="text-center text-yellow-600 rounded py-2 px-4 cursor-pointer block">Start shopping now</Link>}
     {
@@ -35,8 +40,8 @@ const Cart = () => {
             <div className="col-total text-right">Total</div>
           </div>
           <div className="products flex flex-col gap-5 py-1">
-            {data.map((product) => (
-              <div className="product grid grid-cols-5 gap-10 border py-1">
+            {data?.map((product) => (
+              <div key={product.id} className="product grid grid-cols-5 gap-10 border py-1">
                 <div className="porduct-l flex items-center col-span-2 gap-5">
                   <img
                     src={product.image}
@@ -79,7 +84,7 @@ const Cart = () => {
                   <span className=" uppercase font-normal text-[0.6rem] text-rose-600">
                     sr
                   </span>
-                  {product.price}
+                  {product.price * product.cartQuantity}
                 </div>
               </div>
             ))}
@@ -99,7 +104,7 @@ const Cart = () => {
                 <span className="text-rose-600 uppercase font-normal text-[0.6rem]">
                   sr
                 </span>
-                500
+                {subTotal}
               </span>
             </div>
             <p className="text-sm text-gray-500">

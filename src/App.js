@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import Products from "./pages/Products";
 import NotFound from "./pages/NotFound";
 import Cart from "./pages/Cart";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
@@ -14,6 +16,7 @@ const App = () => {
       "
       >
         <Navber />
+        <ToastContainer/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
